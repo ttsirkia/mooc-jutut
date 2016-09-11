@@ -25,17 +25,17 @@
                 "key": "timespent",
                 "required": true,
                 "minimum": 10,
-                "htmlClass": "form-group time-usage-question required standard place-inline",
-                "description": "<p><strong>Ajankäyttö:</strong> <span class=\"mustanswer\">(*) Pakollinen</span></p> <p>Kirjoita alle, kuinka monta minuuttia olet käyttänyt kokonaisuudessaan (materiaalin lukeminen, tehtävien tekeminen jne.) oppimateriaalin tähän lukuun. Viidentoista minuutin tai puolen tunnin tarkkuus riittää hyvin.</p> ",
+                "htmlClass": "time-usage-question standard place-inline",
+                "description": "<p>Kirjoita alle, kuinka monta minuuttia olet käyttänyt kokonaisuudessaan (materiaalin lukeminen, tehtävien tekeminen jne.) oppimateriaalin tähän lukuun. Viidentoista minuutin tai puolen tunnin tarkkuus riittää hyvin.</p> ",
                 "validationMessage": "Anna aika minuutteina.",
-                "title": ""
+                "title": "Ajankäyttö"
             },
             {
                 "type": "textarea",
                 "key": "field_2",
                 "required": false,
                 "description": "<p>Tämän ensimmäisen luvun kohdalla voit esimerkiksi kirjoittaa tähän virkkeen tai pari tunnelmistasi nyt kurssin alussa tai ensivaikutelmiasi kurssista. Voit myös kysyä jotain. <strong>Tässä luvussa sanallinen palautekohta ei ole pakollinen, mutta useassa tulevassa luvussa vastaava kohta on.</strong> (Siitä mainitaan erikseen sitten siellä.)</p> <p>Lähettämäsi tekstit tulevat kurssin henkilökunnan näkyviin. Vastaava opettaja tekee yleisistä ja muuten kiinnostavista kysymyksistä ja kommenteista koosteita (lähettäjät anonymisoiden). Koosteet julkaistaan osana oppimateriaalia. Tekstejä voidaan käyttää anonyymisti myös muihin opetuksen kehittämistarkoituksiin.</p> ",
-                "htmlClass": "form-group main-feedback-question voluntary standard place-on-own-line",
+                "htmlClass": "main-feedback-question voluntary standard place-on-own-line",
                 "title": ""
            }
         ],

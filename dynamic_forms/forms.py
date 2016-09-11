@@ -254,7 +254,9 @@ class DynamicForm(forms.forms.BaseForm, metaclass=DynamicFormMetaClass):
                 css_classes = prop.get('htmlClass')
                 if css_classes:
                     extra_vars['extra_css_classes'] = list(
+                        c.strip() for c in
                         iterchain.from_iterable(x.split(' ') for x in css_classes.split(','))
+                        if c.strip() != 'form-group'
                     )
 
                 # make sure required is false for disabled fields FIXME: this is probably bad idea
@@ -264,6 +266,11 @@ class DynamicForm(forms.forms.BaseForm, metaclass=DynamicFormMetaClass):
                 # if any validators, add them to args
                 if extra_validators:
                     field_args['validators'] = extra_validators
+
+                # clean field widget classes
+                if 'class' in widget_attrs:
+                    widget_attrs['class'] = widget_attrs['class'].replace('form-group', '')
+
 
                 ## final field_class manipulation
 

@@ -1,35 +1,56 @@
 {% load i18n %}
+{% load bootstrap %}
+{% load feedback %}
 
-<h3 class="exercise-title">{{ exercise.name }}</h3>
-
-<div id="exercise">
-
+<div id="exercise" class="col-xs-12">
 	{# Form #}
-	<form action="{{post_url}}" method="post">
+	<form action="{{post_url}}" method="post" class="form-horizontal">
 
-		{# warning state http://getbootstrap.com/css/#forms-control-validation #}
-		{{ form.as_div }}
+		{{ form|bootstrap }}
 
-		{# <div class="form-group"> #}
-		<p>
-		<input type="submit"
-		       value="{% if not feedback %}{% trans 'Submit' %}{% else %}{% trans 'Submit update' %}{% endif %}"
-		       class="btn btn-primary" />
-		</p>
-		{# </div> #}
+		<div class="form-group">
+			<div class="btn-toolbar">
+				<input type="submit"
+				       value="{% if not feedback %}{% trans 'Submit' %}{% else %}{% trans 'Submit update' %}{% endif %}"
+				       class="btn btn-primary" />
+			</div>
+		</div>
 	</form>
 
 	{# Response #}
-	{% if feedback and feedback.responded %}
-		<div class="alert alert-info">
-		<h4>{% trans "Staff response" %}</h4>
-		{% if feedback.response_msg %}
-			<p>{{ feedback.response_msg }}</p>
-		{% endif %}
-		<p>{% blocktrans with status=feedback.response_grade_text.lower %}
-			Feedback is {{ status }}
-		{% endblocktrans%}</p>
-		</div>
+	{% if feedback %}
+		<hr>
+
+		<h3 class="row">
+			{% trans "Staff response" %}
+			{% if feedback.responded %}
+				<span
+					class="label label-{{ feedback.valid_response_grade|grade_color }}"
+					>{{ feedback.response_grade_text }}</span>
+			{% endif %}
+		</h3>
+
+		{% if not feedback.responded %}
+			<div class="alert alert-success row">
+				{% blocktrans %}
+					Your feedback has been saved and is awaiting for response.
+				{% endblocktrans %}
+			</div>
+		{% else %}
+			{% if feedback.response_msg %}
+				<div class="alert alert-info row">
+					<p>{{ feedback.response_msg }}</p>
+				</div>
+			{% else %}
+				<div class="row">
+					<p>
+						{% blocktrans with grade=feedback.response_grade_text.lower %}
+							No response message was given, but your feedback was marked {{grade}}.
+						{% endblocktrans %}
+					</p>
+				</div>
+			{% endif %}
+		{% endif%}
 	{% endif %}
 </div>
 
